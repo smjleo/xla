@@ -1419,9 +1419,7 @@ cc_library(
     srcs = if_gpu_is_configured([
         "gpu_compiler.cc",
     ]),
-    hdrs = if_gpu_is_configured([
-        "gpu_compiler.h",
-    ]),
+    hdrs = ["gpu_compiler.h"],
     deps = if_gpu_is_configured([
         # go/keep-sorted start prefix_order=":,,
         ":buffer_sharing",
