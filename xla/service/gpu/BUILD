@@ -1084,7 +1084,7 @@ cc_library(
 cc_library(
     name = "cusolver_context",
     srcs = if_gpu_is_configured(["cusolver_context.cc"]),
-    hdrs = if_gpu_is_configured(["cusolver_context.h"]),
+    hdrs = ["cusolver_context.h"],
     local_defines = if_cuda_is_configured(["GOOGLE_CUDA=1"]) + if_rocm_is_configured([
         "TENSORFLOW_USE_ROCM=1",
     ]),
@@ -2477,11 +2477,11 @@ xla_cc_test(
 cc_library(
     name = "buffer_comparator",
     srcs = if_gpu_is_configured(["buffer_comparator.cc"]),
-    hdrs = if_gpu_is_configured(["buffer_comparator.h"]),
+    hdrs = ["buffer_comparator.h"],
     local_defines = if_cuda_is_configured(["GOOGLE_CUDA=1"]) + if_rocm_is_configured([
         "TENSORFLOW_USE_ROCM=1",
     ]),
-    deps = if_gpu_is_configured([
+    deps = [
         # keep sorted
         ":buffer_comparator_kernel",
         ":gpu_asm_opts_util",
@@ -2501,7 +2501,7 @@ cc_library(
         "@tsl//tsl/platform:logging",
         "@tsl//tsl/platform:ml_dtypes",
         "@tsl//tsl/platform:statusor",
-    ]) + if_rocm_is_configured([
+    ] + if_rocm_is_configured([
         # keep sorted
         "@local_config_rocm//rocm:rocm_headers",
     ]) + [
@@ -2745,7 +2745,7 @@ xla_cc_test(
 cc_library(
     name = "make_batch_pointers",
     srcs = if_gpu_is_configured(["make_batch_pointers.cc"]),
-    hdrs = if_gpu_is_configured(["make_batch_pointers.h"]),
+    hdrs = ["make_batch_pointers.h"],
     deps = [
         "//xla:types",
         "//xla:util",
