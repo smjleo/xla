@@ -47,7 +47,7 @@ def gpu_only_cc_library(name, tags = [], **kwargs):
     """
     if not native.package_name().startswith("xla/stream_executor"):
         fail("gpu_only_cc_library may only be used in `xla/stream_executor/...`.")
-	
+        
     cc_library(
         name = "%s_non_gpu" % name,
         tags = ["manual"],
