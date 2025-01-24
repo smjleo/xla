@@ -1420,7 +1420,7 @@ cc_library(
         "gpu_compiler.cc",
     ]),
     hdrs = ["gpu_compiler.h"],
-    deps = if_gpu_is_configured([
+    deps = [
         # go/keep-sorted start prefix_order=":,,
         ":buffer_sharing",
         ":compile_module_to_llvm_ir",
@@ -1662,7 +1662,7 @@ cc_library(
         "@tsl//tsl/profiler/lib:scoped_annotation",
         "@tsl//tsl/profiler/lib:traceme",
         # go/keep-sorted end
-    ]) + xla_internal(["service:export_hlo"]) + if_google([
+    ] + xla_internal(["service:export_hlo"]) + if_google([
         "//xla/hlo/experimental/auto_sharding",
     ]) + [
         "//xla/stream_executor:device_memory_allocator",
